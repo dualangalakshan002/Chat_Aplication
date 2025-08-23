@@ -1,7 +1,7 @@
 import User from "../models/user.model.js"
 import { generateToken } from "../lib/utils.js";
 import bcrypt from "bcryptjs"
-import cloudinary from "../lib/cloudinary.js";
+import cl
 
 export const signup = async (req, res) => {
    const{fullName,email,password}= req.body;
@@ -95,15 +95,6 @@ export const updateProfile = async (req, res) => {
         res.status(200).json(updateedUser);
     } catch (error) {
         console.log("Error in updateProfile controller:", error.message);
-        res.status(500).json({ message: "Internal server error" });
-        
-    }
-};
-export const checkAuth = (req, res) => {
-    try {
-        res.status(200).json(req.user);
-    } catch (error) {
-        console.log("Error in checkAuth controller:", error.message);
         res.status(500).json({ message: "Internal server error" });
         
     }

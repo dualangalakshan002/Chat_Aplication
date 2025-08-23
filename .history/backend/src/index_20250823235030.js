@@ -10,8 +10,8 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json())
+app.use
 
 app.use("/api/auth",authRoutes);
 
