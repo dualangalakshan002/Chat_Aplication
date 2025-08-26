@@ -1,0 +1,62 @@
+{
+    "sourceFile": "frontend/src/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1756019218838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756019269646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import React from 'react'\n+\n+const App = () => {\n+  return (\n+    <div>\n+      \n+    </div>\n+  )\n+}\n+\n+export default App\n"
+                },
+                {
+                    "date": 1756019698384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n const App = () => {\n   return (\n     <div>\n-      \n+      he\n     </div>\n   )\n }\n \n"
+                },
+                {
+                    "date": 1756019920515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,50 @@\n-import React from 'react'\n+import { Navigate, Route, Routes } from \"react-router-dom\";\n+import Navbar from \"./components/Nabar\"\n+// Correct import (if using Zustand)\n+import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n+import HomePage from \"./pages/HomePage\";\n+import LoginPage from \"./pages/LoginPage\";\n+import SignUpPage from \"./pages/SignUpPage\";\n+import ProfilePage from \"./pages/ProfilePage\";\n+import SettingsPage from \"./pages/SettingsPage\";\n+import { useEffect } from \"react\";\n \n+import {Loader} from \"lucide-react\"; // Ensure you have lucide-react installed\n+import {Toaster} from \"react-hot-toast\";\n+\n const App = () => {\n+  const {authUser,checkAuth,isCheckingAuth,onlineUsers} = useAuthStore();\n+\n+  console.log({onlineUsers});\n+\n+  \n+  useEffect(() => {\n+    checkAuth();\n+  } , [checkAuth]);\n+\n+  console.log({authUser});\n+\n+  if (isCheckingAuth && !authUser) {\n+    return (\n+      <div className=\"flex justify-center items-center h-screen\">\n+        <Loader className=\"size-10 animate-spin\"/>\n+      </div>\n+    );\n+  }\n   return (\n     <div>\n-      he\n+      <Navbar />\n+      <Routes>\n+        <Route path=\"/\" element={authUser? <HomePage />: <Navigate to =\"/login\"/>} />\n+        <Route path=\"/login\" element={!authUser? <LoginPage /> :<Navigate to =\"/\"/>} />\n+        <Route path=\"/signup\" element={!authUser? <SignUpPage /> :<Navigate to =\"/\"/>} />\n+        <Route path=\"/profile\" element={authUser? <ProfilePage />: <Navigate to =\"/login\"/>} />\n+        <Route path=\"/settings\" element={<SettingsPage />} />\n+      </Routes>\n+\n+      <Toaster/>\n     </div>\n   )\n }\n \n-export default App\n+export default App;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756118367807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { Navigate, Route, Routes } from \"react-router-dom\";\n-import Navbar from \"./components/Nabar\"\n+\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n import HomePage from \"./pages/HomePage\";\n import LoginPage from \"./pages/LoginPage\";\n"
+                },
+                {
+                    "date": 1756118422893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { Navigate, Route, Routes } from \"react-router-dom\";\n-\n+import Navbar from \"./components/Nabar.jsx\"\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n import HomePage from \"./pages/HomePage\";\n import LoginPage from \"./pages/LoginPage\";\n"
+                },
+                {
+                    "date": 1756118449298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Navigate, Route, Routes } from \"react-router-dom\";\n-import Navbar from \"./components/Nabar.jsx\"\n+import Navbar from \"./components/Navbar.jsx\"\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n-import HomePage from \"./pages/HomePage\";\n+import HomePage from \"./pages/HomePage.j\";\n import LoginPage from \"./pages/LoginPage\";\n import SignUpPage from \"./pages/SignUpPage\";\n import ProfilePage from \"./pages/ProfilePage\";\n import SettingsPage from \"./pages/SettingsPage\";\n"
+                },
+                {
+                    "date": 1756118456598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { Navigate, Route, Routes } from \"react-router-dom\";\n import Navbar from \"./components/Navbar.jsx\"\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n-import HomePage from \"./pages/HomePage.j\";\n-import LoginPage from \"./pages/LoginPage\";\n+import HomePage from \"./pages/HomePage.jsx\";\n+import LoginPage from \"./pages/LoginPage.\";\n import SignUpPage from \"./pages/SignUpPage\";\n import ProfilePage from \"./pages/ProfilePage\";\n import SettingsPage from \"./pages/SettingsPage\";\n import { useEffect } from \"react\";\n"
+                },
+                {
+                    "date": 1756118463586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n import Navbar from \"./components/Navbar.jsx\"\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n import HomePage from \"./pages/HomePage.jsx\";\n-import LoginPage from \"./pages/LoginPage.\";\n-import SignUpPage from \"./pages/SignUpPage\";\n+import LoginPage from \"./pages/LoginPage.jsx\";\n+import SignUpPage from \"./pages/SignUpPage.\";\n import ProfilePage from \"./pages/ProfilePage\";\n import SettingsPage from \"./pages/SettingsPage\";\n import { useEffect } from \"react\";\n \n"
+                },
+                {
+                    "date": 1756118473051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n // Correct import (if using Zustand)\n import { useAuthStore } from './store/useAuthStore'; // Adjust path as needed\n import HomePage from \"./pages/HomePage.jsx\";\n import LoginPage from \"./pages/LoginPage.jsx\";\n-import SignUpPage from \"./pages/SignUpPage.\";\n-import ProfilePage from \"./pages/ProfilePage\";\n+import SignUpPage from \"./pages/SignUpPage.jsx\";\n+import ProfilePage from \"./pages/ProfilePage.jsx\";\n import SettingsPage from \"./pages/SettingsPage\";\n import { useEffect } from \"react\";\n \n import {Loader} from \"lucide-react\"; // Ensure you have lucide-react installed\n"
+                },
+                {
+                    "date": 1756118479158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import HomePage from \"./pages/HomePage.jsx\";\n import LoginPage from \"./pages/LoginPage.jsx\";\n import SignUpPage from \"./pages/SignUpPage.jsx\";\n import ProfilePage from \"./pages/ProfilePage.jsx\";\n-import SettingsPage from \"./pages/SettingsPage\";\n+import SettingsPage from \"./pages/SettingsPage.jsx\";\n import { useEffect } from \"react\";\n \n import {Loader} from \"lucide-react\"; // Ensure you have lucide-react installed\n import {Toaster} from \"react-hot-toast\";\n"
+                },
+                {
+                    "date": 1756199373303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n   \n   useEffect(() => {\n     checkAuth();\n-  } , [checkAuth]);\n+  } , []);\n \n   console.log({authUser});\n \n   if (isCheckingAuth && !authUser) {\n"
+                }
+            ],
+            "date": 1756019218838,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

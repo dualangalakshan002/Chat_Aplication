@@ -1,0 +1,46 @@
+{
+    "sourceFile": "backend/src/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1756117832797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756117839895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import express from \"express\";\r\n import dotenv from \"dotenv\";\r\n import cookieParser from \"cookie-parser\"\r\n+import \r\n \r\n import authRoutes from \"./routes/auth.route.js\";\r\n import messageRoutes from \"./routes/message.route.js\"\r\n \r\n"
+                },
+                {
+                    "date": 1756117851170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import authRoutes from \"./routes/auth.route.js\";\r\n import messageRoutes from \"./routes/message.route.js\"\r\n \r\n \r\n-import { connectDB } from \"./lib/db.js\";\r\n+\r\n dotenv.config()\r\n const app = express();\r\n \r\n const PORT = process.env.PORT;\r\n"
+                },
+                {
+                    "date": 1756117858659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n import express from \"express\";\r\n import dotenv from \"dotenv\";\r\n import cookieParser from \"cookie-parser\"\r\n-import \r\n+import\r\n \r\n+import { connectDB } from \"./lib/db.js\";\r\n+\r\n import authRoutes from \"./routes/auth.route.js\";\r\n import messageRoutes from \"./routes/message.route.js\"\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756117864349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import express from \"express\";\r\n import dotenv from \"dotenv\";\r\n import cookieParser from \"cookie-parser\"\r\n-import\r\n+import \r\n \r\n import { connectDB } from \"./lib/db.js\";\r\n \r\n import authRoutes from \"./routes/auth.route.js\";\r\n"
+                },
+                {
+                    "date": 1756117874199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import express from \"express\";\r\n import dotenv from \"dotenv\";\r\n import cookieParser from \"cookie-parser\"\r\n-import \r\n+import cors from \r\n \r\n import { connectDB } from \"./lib/db.js\";\r\n \r\n import authRoutes from \"./routes/auth.route.js\";\r\n"
+                },
+                {
+                    "date": 1756117880163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import express from \"express\";\r\n import dotenv from \"dotenv\";\r\n import cookieParser from \"cookie-parser\"\r\n-import cors from \r\n+import cors from \"cors\"\r\n \r\n import { connectDB } from \"./lib/db.js\";\r\n \r\n import authRoutes from \"./routes/auth.route.js\";\r\n"
+                },
+                {
+                    "date": 1756117903318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,10 @@\n const PORT = process.env.PORT;\r\n \r\n app.use(express.json());\r\n app.use(cookieParser());\r\n+a\r\n \r\n-\r\n app.use(\"/api/auth\",authRoutes);\r\n app.use(\"/api/message\",messageRoutes)\r\n \r\n app.listen (PORT, () =>{\r\n"
+                }
+            ],
+            "date": 1756117832797,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\r\nimport dotenv from \"dotenv\";\r\nimport cookieParser from \"cookie-parser\"\r\n\r\nimport authRoutes from \"./routes/auth.route.js\";\r\nimport messageRoutes from \"./routes/message.route.js\"\r\n\r\n\r\nimport { connectDB } from \"./lib/db.js\";\r\ndotenv.config()\r\nconst app = express();\r\n\r\nconst PORT = process.env.PORT;\r\n\r\napp.use(express.json());\r\napp.use(cookieParser());\r\n\r\napp.use(\"/api/auth\",authRoutes);\r\napp.use(\"/api/message\",messageRoutes)\r\n\r\napp.listen (PORT, () =>{\r\n    console.log(\"Server is running on PORT:\"+PORT);\r\n    connectDB()\r\n\r\n});"
+        }
+    ]
+}
