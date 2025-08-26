@@ -1,0 +1,46 @@
+{
+    "sourceFile": "frontend/src/components/AuthImagePattern.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1756021261053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756183877472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div className=\"grid grid-cols-3 gap-3 mb-8\">\r\n           {[...Array(9)].map((_, i) => (\r\n             <div\r\n               key={i}\r\n-              className={`w-30 h-24 rounded-2xl bg-[#23334e] ${\r\n+              className={`w-30 h-24 rounded-2xl bg-[#386bc4] ${\r\n                 i % 2 === 0 ? \"animate-pulse\" : \"\"\r\n               }`}\r\n             />\r\n           ))}\r\n"
+                },
+                {
+                    "date": 1756183885635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <div className=\"grid grid-cols-3 gap-3 mb-8\">\r\n           {[...Array(9)].map((_, i) => (\r\n             <div\r\n               key={i}\r\n-              className={`w-30 h-24 rounded-2xl bg-[#386bc4] ${\r\n+              className={`w-30 h-24 rounded-2xl bg-[#23334e] ${\r\n                 i % 2 === 0 ? \"animate-pulse\" : \"\"\r\n               }`}\r\n             />\r\n           ))}\r\n"
+                },
+                {
+                    "date": 1756196421935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +0,0 @@\n-const AuthImagePattern = ({ title, subtitle }) => {\r\n-  return (\r\n-    <div className=\"hidden lg:flex items-center justify-center bg-base-200 p-12\">\r\n-      <div className=\"max-w-md text-center\">\r\n-        <div className=\"grid grid-cols-3 gap-3 mb-8\">\r\n-          {[...Array(9)].map((_, i) => (\r\n-            <div\r\n-              key={i}\r\n-              className={`w-30 h-24 rounded-2xl bg-[#23334e] ${\r\n-                i % 2 === 0 ? \"animate-pulse\" : \"\"\r\n-              }`}\r\n-            />\r\n-          ))}\r\n-        </div>\r\n-        <h2 className=\"text-2xl font-bold mb-4\">{title}</h2>\r\n-        <p className=\"text-gray-content/60\">{subtitle}</p>\r\n-      </div>\r\n-      \r\n-    </div>\r\n-\r\n-    \r\n-  );\r\n-};\r\n-\r\n-export default AuthImagePattern;\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756196427374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,11 @@\n-\n+import React from 'react'\r\n+\r\n+const AuthImagePattern = () => {\r\n+  return (\r\n+    <div>\r\n+      \r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default AuthImagePattern\r\n"
+                },
+                {
+                    "date": 1756196435229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n \r\n const AuthImagePattern = () => {\r\n   return (\r\n     <div>\r\n-      \r\n+      image pattent\r\n     </div>\r\n   )\r\n }\r\n \r\n export default AuthImagePattern\r\n+image pattent\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756196440887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,6 +7,5 @@\n     </div>\r\n   )\r\n }\r\n \r\n-export default AuthImagePattern\r\n-image pattent\n\\ No newline at end of file\n+export default AuthImagePattern\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756200288359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,25 @@\n-import React from 'react'\r\n-\r\n-const AuthImagePattern = () => {\r\n+const AuthImagePattern = ({ title, subtitle }) => {\r\n   return (\r\n-    <div>\r\n-      image pattent\r\n+    <div className=\"hidden lg:flex items-center justify-center bg-base-200 p-12\">\r\n+      <div className=\"max-w-md text-center\">\r\n+        <div className=\"grid grid-cols-3 gap-3 mb-8\">\r\n+          {[...Array(9)].map((_, i) => (\r\n\\ No newline at end of file\n+            <div\r\n+              key={i}\r\n+              className={`w-30 h-24 rounded-2xl bg-[#23334e] ${\r\n+                i % 2 === 0 ? \"animate-pulse\" : \"\"\r\n+              }`}\r\n+            />\r\n+          ))}\r\n+        </div>\r\n+        <h2 className=\"text-2xl font-bold mb-4\">{title}</h2>\r\n+        <p className=\"text-gray-content/60\">{subtitle}</p>\r\n+      </div>\r\n+      \r\n     </div>\r\n-  )\r\n-}\r\n \r\n-export default AuthImagePattern\n+    \r\n+  );\r\n+};\r\n+\r\n+export default AuthImagePattern;\r\n"
+                }
+            ],
+            "date": 1756021261053,
+            "name": "Commit-0",
+            "content": "const AuthImagePattern = ({ title, subtitle }) => {\r\n  return (\r\n    <div className=\"hidden lg:flex items-center justify-center bg-base-200 p-12\">\r\n      <div className=\"max-w-md text-center\">\r\n        <div className=\"grid grid-cols-3 gap-3 mb-8\">\r\n          {[...Array(9)].map((_, i) => (\r\n            <div\r\n              key={i}\r\n              className={`w-30 h-24 rounded-2xl bg-[#23334e] ${\r\n                i % 2 === 0 ? \"animate-pulse\" : \"\"\r\n              }`}\r\n            />\r\n          ))}\r\n        </div>\r\n        <h2 className=\"text-2xl font-bold mb-4\">{title}</h2>\r\n        <p className=\"text-gray-content/60\">{subtitle}</p>\r\n      </div>\r\n      \r\n    </div>\r\n\r\n    \r\n  );\r\n};\r\n\r\nexport default AuthImagePattern;\r\n"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "sourceFile": "frontend/src/main.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1756019777404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756019783264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n import App from './App.jsx'\n \n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n-    \n+    <Br\n     <App />\n   </StrictMode>,\n )\n"
+                },
+                {
+                    "date": 1756019789113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import { StrictMode } from 'react'\n import { createRoot } from 'react-dom/client'\n import './index.css'\n import App from './App.jsx'\n+import { BrowserRouter } from 'react-router-dom'\n \n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n-    <Br\n+    <BrowserRouter>\n+    </BrowserRouter>\n     <App />\n   </StrictMode>,\n )\n"
+                },
+                {
+                    "date": 1756019794691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,8 @@\n \n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n     <BrowserRouter>\n+    \n     </BrowserRouter>\n-    <App />\n   </StrictMode>,\n )\n"
+                },
+                {
+                    "date": 1756019799761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,8 @@\n \n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n     <BrowserRouter>\n-    \n     </BrowserRouter>\n+    <App />\n   </StrictMode>,\n )\n"
+                },
+                {
+                    "date": 1756019805715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,7 @@\n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n     <BrowserRouter>\n     </BrowserRouter>\n-    <App />\n+    \n   </StrictMode>,\n )\n"
+                },
+                {
+                    "date": 1756019811435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,8 @@\n \n createRoot(document.getElementById('root')).render(\n   <StrictMode>\n     <BrowserRouter>\n+    <App />\n     </BrowserRouter>\n-    \n   </StrictMode>,\n )\n"
+                }
+            ],
+            "date": 1756019777404,
+            "name": "Commit-0",
+            "content": "import { StrictMode } from 'react'\nimport { createRoot } from 'react-dom/client'\nimport './index.css'\nimport App from './App.jsx'\n\ncreateRoot(document.getElementById('root')).render(\n  <StrictMode>\n    \n    <App />\n  </StrictMode>,\n)\n"
+        }
+    ]
+}

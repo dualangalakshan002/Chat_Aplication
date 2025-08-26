@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/SettingsPage.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756020172941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756020172941,
+            "name": "Commit-0",
+            "content": "import React from 'react'\r\n\r\nconst SettingsPage = () => {\r\n  return (\r\n    <div>\r\n      SettingsPage\r\n    </div>\r\n  )\r\n}\r\n\r\nexport default SettingsPage\r\n"
+        }
+    ]
+}

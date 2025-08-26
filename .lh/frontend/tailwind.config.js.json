@@ -1,0 +1,50 @@
+{
+    "sourceFile": "frontend/tailwind.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1756019171191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756019475864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n+\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                },
+                {
+                    "date": 1756019481783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n-\n+importdai\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                },
+                {
+                    "date": 1756019503231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n-importdai\n+import daisy\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                },
+                {
+                    "date": 1756019508657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n-import daisy\n+import daisyui from \n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                },
+                {
+                    "date": 1756019514884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n-import daisyui from \n+import daisyui from 'daisyui'\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                },
+                {
+                    "date": 1756019529492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,6 +7,6 @@\n   ],\n   theme: {\n     extend: {},\n   },\n-  plugins: [],\n+  plugins: [da],\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756019544968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n /** @type {import('tailwindcss').Config} */\n-import daisyui from 'daisyui'\n+import daisyui from 'daisyui';\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n   ],\n   theme: {\n     extend: {},\n   },\n-  plugins: [da],\n+  plugins: [daisyui],\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756019579468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n /** @type {import('tailwindcss').Config} */\n-import daisyui from 'daisyui';\n+import daisyui from \"daisyui';\n export default {\n   content: [\n     \"./index.html\",\n     \"./src/**/*.{js,ts,jsx,tsx}\",\n"
+                }
+            ],
+            "date": 1756019171190,
+            "name": "Commit-0",
+            "content": "/** @type {import('tailwindcss').Config} */\nexport default {\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}"
+        }
+    ]
+}

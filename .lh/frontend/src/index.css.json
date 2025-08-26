@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/index.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1756019211385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756019237557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+@tailwind base;\n+@tailwind components;\n+@tailwind utilities;@tailwind base;\n+@tailwind components;\n+@tailwind utilities;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1756019211385,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}
