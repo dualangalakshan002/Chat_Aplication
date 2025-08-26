@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1756021199421,
@@ -24,6 +24,14 @@
                 {
                     "date": 1756196363129,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n \r\n const ChatHeader = () => {\r\n   return (\r\n     <div>\r\n-      \r\n+      cha\r\n     </div>\r\n   )\r\n }\r\n \r\n export default ChatHeader\r\n+cha\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756239471558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,10 @@\n \r\n const ChatHeader = () => {\r\n   return (\r\n     <div>\r\n-      cha\r\n+      chatheader\r\n     </div>\r\n   )\r\n }\r\n \r\n-export default ChatHeader\r\n\\ No newline at end of file\n-cha\n+export default ChatHeader\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756239751353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,37 @@\n-import React from 'react'\r\n+import { X } from \"lucide-react\";\r\n+import { useAuthStore } from \"../store/useAuthStore\";\r\n+import { useChatStore } from \"../store/useChatStore\";\r\n \r\n const ChatHeader = () => {\r\n+  const { selectedUser, setSelectedUser } = useChatStore();\r\n+  const { onlineUsers } = useAuthStore();\r\n+\r\n   return (\r\n-    <div>\r\n\\ No newline at end of file\n-      chatheader\r\n+    <div className=\"p-2.5 border-b border-base-300\">\r\n+      <div className=\"flex items-center justify-between\">\r\n+        <div className=\"flex items-center gap-3\">\r\n+          {/* Avatar */}\r\n+          <div className=\"avatar\">\r\n+            <div className=\"size-10 rounded-full relative\">\r\n+              <img src={selectedUser.profilePic || \"/avatar.png\"} alt={selectedUser.fullName} />\r\n+            </div>\r\n+          </div>\r\n+\r\n+          {/* User info */}\r\n+          <div>\r\n+            <h3 className=\"font-medium\">{selectedUser.fullName}</h3>\r\n+            <p className=\"text-sm text-base-content/70\">\r\n+              {onlineUsers.includes(selectedUser._id) ? \"Online\" : \"Offline\"}\r\n+            </p>\r\n+          </div>\r\n+        </div>\r\n+\r\n+        {/* Close button */}\r\n+        <button onClick={() => setSelectedUser(null)}>\r\n+          <X />\r\n+        </button>\r\n+      </div>\r\n     </div>\r\n-  )\r\n-}\r\n-\r\n-export default ChatHeader\n+  );\r\n+};\r\n+export default ChatHeader;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1756021199421,

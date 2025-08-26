@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1756021357244,
@@ -16,6 +16,10 @@
                 {
                     "date": 1756196663883,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+import React from 'react'\r\n+\r\n+const SidebarSkeleton = () => {\r\n+  return (\r\n+    <div>\r\n+      SidebarSkeleton\r\n+    </div>\r\n+  )\r\n+}\r\n+\r\n+export default SidebarSkeleton\r\n"
+                },
+                {
+                    "date": 1756239215132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,41 @@\n-import React from 'react'\r\n+import { Users } from \"lucide-react\";\r\n \r\n const SidebarSkeleton = () => {\r\n+  // Create 8 skeleton items\r\n+  const skeletonContacts = Array(8).fill(null);\r\n+\r\n   return (\r\n-    <div>\r\n-      SidebarSkeleton\r\n-    </div>\r\n-  )\r\n-}\r\n+    <aside\r\n+      className=\"h-full w-20 lg:w-72 border-r border-base-300 \r\n+    flex flex-col transition-all duration-200\"\r\n+    >\r\n+      {/* Header */}\r\n+      <div className=\"border-b border-base-300 w-full p-5\">\r\n+        <div className=\"flex items-center gap-2\">\r\n+          <Users className=\"w-6 h-6\" />\r\n+          <span className=\"font-medium hidden lg:block\">Contacts</span>\r\n+        </div>\r\n+      </div>\r\n \r\n-export default SidebarSkeleton\r\n+      {/* Skeleton Contacts */}\r\n+      <div className=\"overflow-y-auto w-full py-3\">\r\n+        {skeletonContacts.map((_, idx) => (\r\n+          <div key={idx} className=\"w-full p-3 flex items-center gap-3\">\r\n+            {/* Avatar skeleton */}\r\n+            <div className=\"relative mx-auto lg:mx-0\">\r\n+              <div className=\"skeleton size-12 rounded-full\" />\r\n+            </div>\r\n+\r\n+            {/* User info skeleton - only visible on larger screens */}\r\n+            <div className=\"hidden lg:block text-left min-w-0 flex-1\">\r\n+              <div className=\"skeleton h-4 w-32 mb-2\" />\r\n+              <div className=\"skeleton h-3 w-16\" />\r\n+            </div>\r\n+          </div>\r\n+        ))}\r\n+      </div>\r\n+    </aside>\r\n+  );\r\n+};\r\n+\r\n+export default SidebarSkeleton;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1756021357244,

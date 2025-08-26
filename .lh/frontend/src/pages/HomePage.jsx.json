@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1756020200759,
@@ -16,6 +16,34 @@
                 {
                     "date": 1756196495021,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n const HomePage = () => {\r\n   return (\r\n     <div>\r\n-      \r\n+      homepage\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1756209366136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,25 @@\n+import Sidebar from '../components/Sidebar';\r\n+import { useChatStore } from '../store/useChatStore';\r\n+import NoChatSelected from '../components/NoChatSelected';\r\n+import ChatContainer from '../components/ChatContainer';\r\n import React from 'react'\r\n \r\n const HomePage = () => {\r\n+  const {selectedUser} = useChatStore();\r\n   return (\r\n-    <div>\r\n-      homepage\r\n+    <div className=\"h-screen bg-base-200\">\r\n+      <div className=\"flex item-center justify-center pt-20 px-4\">\r\n+        <div className=\"bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]\">\r\n+          <div className=\"flex h-full rounded-lg overflow-hidden\">\r\n+            <Sidebar />\r\n+            {!selectedUser ? <NoChatSelected /> : <ChatContainer />}\r\n+\r\n+          </div>\r\n+\r\n+        </div>\r\n+\r\n+      </div>\r\n     </div>\r\n   )\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1756209470336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Sidebar from '../components/Sidebar';\r\n import { useChatStore } from '../store/useChatStore';\r\n import NoChatSelected from '../components/NoChatSelected';\r\n-import ChatContainer from '../components/ChatContainer';\r\n+import ChatContainer from '../components/ChatContainer.';\r\n import React from 'react'\r\n \r\n const HomePage = () => {\r\n   const {selectedUser} = useChatStore();\r\n"
+                },
+                {
+                    "date": 1756209476566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Sidebar from '../components/Sidebar';\r\n import { useChatStore } from '../store/useChatStore';\r\n-import NoChatSelected from '../components/NoChatSelected';\r\n-import ChatContainer from '../components/ChatContainer.';\r\n+import NoChatSelected from '../components/NoChatSelected.jsc';\r\n+import ChatContainer from '../components/ChatContainer.jsx';\r\n import React from 'react'\r\n \r\n const HomePage = () => {\r\n   const {selectedUser} = useChatStore();\r\n"
+                },
+                {
+                    "date": 1756209483146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import Sidebar from '../components/Sidebar';\r\n-import { useChatStore } from '../store/useChatStore';\r\n-import NoChatSelected from '../components/NoChatSelected.jsc';\r\n+import { useChatStore } from '../store/useChatStore.';\r\n+import NoChatSelected from '../components/NoChatSelected.jsx';\r\n import ChatContainer from '../components/ChatContainer.jsx';\r\n import React from 'react'\r\n \r\n const HomePage = () => {\r\n"
+                },
+                {
+                    "date": 1756209493543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import Sidebar from '../components/Sidebar';\r\n-import { useChatStore } from '../store/useChatStore.';\r\n+import { useChatStore } from '../store/useChatStore.js';\r\n import NoChatSelected from '../components/NoChatSelected.jsx';\r\n import ChatContainer from '../components/ChatContainer.jsx';\r\n import React from 'react'\r\n \r\n"
+                },
+                {
+                    "date": 1756209501289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import Sidebar from '../components/Sidebar';\r\n+import Sidebar from '../components/Sidebar.jsx';\r\n import { useChatStore } from '../store/useChatStore.js';\r\n import NoChatSelected from '../components/NoChatSelected.jsx';\r\n import ChatContainer from '../components/ChatContainer.jsx';\r\n import React from 'react'\r\n"
+                },
+                {
+                    "date": 1756239100745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import Sidebar from '../components/Sidebar.jsx';\r\n import { useChatStore } from '../store/useChatStore.js';\r\n-import NoChatSelected from '../components/NoChatSelected.jsx';\r\n+import NoChatSelected from '../components/NochatSelected.jsx';\r\n import ChatContainer from '../components/ChatContainer.jsx';\r\n import React from 'react'\r\n \r\n const HomePage = () => {\r\n"
                 }
             ],
             "date": 1756020200759,

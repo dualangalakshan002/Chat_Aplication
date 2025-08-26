@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1756021174092,
@@ -20,6 +20,10 @@
                 {
                     "date": 1756196632863,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,10 @@\n \r\n const NochatSelected = () => {\r\n   return (\r\n     <div>\r\n-      no\r\n+      nochat\r\n     </div>\r\n   )\r\n }\r\n \r\n export default NochatSelected\r\n\\ No newline at end of file\n-no\n"
+                },
+                {
+                    "date": 1756238815831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,29 @@\n-import React from 'react'\r\n+import { MessageSquare } from \"lucide-react\";\r\n \r\n-const NochatSelected = () => {\r\n+const NoChatSelected = () => {\r\n   return (\r\n-    <div>\r\n-      nochat\r\n+    <div className=\"w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50\">\r\n+      <div className=\"max-w-md text-center space-y-6\">\r\n+        {/* Icon Display */}\r\n\\ No newline at end of file\n+        <div className=\"flex justify-center gap-4 mb-4\">\r\n+          <div className=\"relative\">\r\n+            <div\r\n+              className=\"w-16 h-16 rounded-2xl bg-primary/10 flex items-center\r\n+             justify-center animate-bounce\"\r\n+            >\r\n+              <MessageSquare className=\"w-8 h-8 text-primary \" />\r\n+            </div>\r\n+          </div>\r\n+        </div>\r\n+\r\n+        {/* Welcome Text */}\r\n+        <h2 className=\"text-2xl font-bold\">Welcome to Chatty!</h2>\r\n+        <p className=\"text-base-content/60\">\r\n+          Select a conversation from the sidebar to start chatting\r\n+        </p>\r\n+      </div>\r\n     </div>\r\n-  )\r\n-}\r\n+  );\r\n+};\r\n \r\n-export default NochatSelected\n+export default NoChatSelected;\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1756021174092,
