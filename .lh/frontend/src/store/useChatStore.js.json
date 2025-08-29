@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1756021948345,
@@ -16,6 +16,86 @@
                 {
                     "date": 1756209704793,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,51 @@\n+import {create} from 'zustand';\r\n+import { axiosInstance } from '../lib/axios';\r\n+import toast from 'react-hot-toast';\r\n+\r\n+export const useChatStore = create((set,get) => ({\r\n+    messages: [],\r\n+    users: [],\r\n+    selectedUser: null,\r\n+    isUsersLoading:false,\r\n+    isMessagesLoading: false,\r\n+\r\n+    getUsers: async () => {\r\n+        set({ isUsersLoading: true });\r\n+        try {\r\n+            const res = await axiosInstance.get(\"/messages/users\");\r\n+            set({ users: res.data});\r\n+        } catch (error) {\r\n+            console.error(\"Error fetching users:\", error);\r\n+            toast.error(error.response.data.messages);\r\n+        }finally{\r\n+            set({ isUsersLoading: false });\r\n+        }\r\n+    },\r\n+\r\n+    getMessages: async (userId) => {\r\n+        set({ isMessagesLoading: true });\r\n+        try {\r\n+            const res = await axiosInstance.get(`/messages/${userId}`);\r\n+            set({ messages: res.data });\r\n+        } catch (error) {\r\n+            toast.error(error.response.data.messages);\r\n+        } finally {\r\n+            set({ isMessagesLoading: false });\r\n+        }\r\n+    },\r\n+\r\n+    sendMessage: async (messageData) => {\r\n+        const {selectedUser,messages}= get()\r\n+        try {\r\n+            const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);\r\n+            set({ messages: [...messages, res.data] });\r\n+        } catch (error) {\r\n+            toast.error(error.response.data.message);\r\n+        }\r\n+    },\r\n+    //todo:later\r\n+    setSelectedUser: (selectedUser) => {\r\n+        set({ selectedUser});\r\n+    },\r\n+\r\n+}))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756395106094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,6 +46,7 @@\n     //todo:later\r\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n+    \r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756395125680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,5 +48,6 @@\n         set({ selectedUser});\r\n     },\r\n     \r\n \r\n+\r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756395134173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,19 @@\n     //todo:later\r\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n+\r\n     \r\n+    deleteUser: async (userId) => {\r\n+    try {\r\n+      await axios.delete(`/api/users/${userId}`);\r\n+      set({\r\n+        users: get().users.filter((u) => u._id !== userId),\r\n+      });\r\n+    } catch (error) {\r\n+      console.error(\"Error deleting user\", error.response?.data || error.message);\r\n+    }\r\n+  },\r\n \r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756403846993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,12 +47,12 @@\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n \r\n-    \r\n+\r\n     deleteUser: async (userId) => {\r\n     try {\r\n-      await axios.delete(`/api/users/${userId}`);\r\n+      await axiosI.delete(`/api/users/${userId}`);\r\n       set({\r\n         users: get().users.filter((u) => u._id !== userId),\r\n       });\r\n     } catch (error) {\r\n"
+                },
+                {
+                    "date": 1756404467207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n \r\n \r\n     deleteUser: async (userId) => {\r\n     try {\r\n-      await axiosI.delete(`/api/users/${userId}`);\r\n+      await axiosInstance.delete(`/users/${userId}`);\r\n       set({\r\n         users: get().users.filter((u) => u._id !== userId),\r\n       });\r\n     } catch (error) {\r\n"
+                },
+                {
+                    "date": 1756404487935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,9 @@\n       await axiosInstance.delete(`/users/${userId}`);\r\n       set({\r\n         users: get().users.filter((u) => u._id !== userId),\r\n       });\r\n+      \r\n     } catch (error) {\r\n       console.error(\"Error deleting user\", error.response?.data || error.message);\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1756404506563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,11 +54,13 @@\n       await axiosInstance.delete(`/users/${userId}`);\r\n       set({\r\n         users: get().users.filter((u) => u._id !== userId),\r\n       });\r\n-      \r\n+    toast.success(\"User deleted successfully\");\r\n+\r\n     } catch (error) {\r\n       console.error(\"Error deleting user\", error.response?.data || error.message);\r\n+      \r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756404512428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n     toast.success(\"User deleted successfully\");\r\n \r\n     } catch (error) {\r\n       console.error(\"Error deleting user\", error.response?.data || error.message);\r\n-      \r\n+    toast.error(\"Failed to delete user\");\r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756406501880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,8 @@\n       set({\r\n         users: get().users.filter((u) => u._id !== userId),\r\n       });\r\n     toast.success(\"User deleted successfully\");\r\n-\r\n     } catch (error) {\r\n       console.error(\"Error deleting user\", error.response?.data || error.message);\r\n     toast.error(\"Failed to delete user\");\r\n     }\r\n"
+                },
+                {
+                    "date": 1756406523967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,18 +49,17 @@\n     },\r\n \r\n \r\n     deleteUser: async (userId) => {\r\n-    try {\r\n-      await axiosInstance.delete(`/users/${userId}`);\r\n-      set({\r\n-        users: get().users.filter((u) => u._id !== userId),\r\n-      });\r\n+  try {\r\n+    await axiosInstance.delete(`/users/${userId}`); // ✅ calls /api/users/:id\r\n+    set({ users: get().users.filter(u => u._id !== userId) });\r\n     toast.success(\"User deleted successfully\");\r\n-    } catch (error) {\r\n-      console.error(\"Error deleting user\", error.response?.data || error.message);\r\n+  } catch (error) {\r\n+    console.error(\"Error deleting user:\", error.response?.data || error.message);\r\n     toast.error(\"Failed to delete user\");\r\n-    }\r\n-  },\r\n+  }\r\n+},\r\n \r\n \r\n+\r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756407638696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,19 +47,7 @@\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n \r\n+    \r\n \r\n-    deleteUser: async (userId) => {\r\n-  try {\r\n-    await axiosInstance.delete(`/users/${userId}`); // ✅ calls /api/users/:id\r\n-    set({ users: get().users.filter(u => u._id !== userId) });\r\n-    toast.success(\"User deleted successfully\");\r\n-  } catch (error) {\r\n-    console.error(\"Error deleting user:\", error.response?.data || error.message);\r\n-    toast.error(\"Failed to delete user\");\r\n-  }\r\n-},\r\n-\r\n-\r\n-\r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756407647181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,5 @@\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n \r\n-    \r\n-\r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472368548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,6 +46,7 @@\n     //todo:later\r\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n+    \r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472380254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,7 +46,15 @@\n     //todo:later\r\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n-    \r\n+    deleteMessage: async (messageId) => {\r\n+  const { messages } = get();\r\n+  try {\r\n+    await axiosInstance.delete(`/messages/${messageId}`);\r\n+    set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n+  } catch (error) {\r\n+    toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n+  }\r\n+},\r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472386926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,7 +54,7 @@\n     set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n   } catch (error) {\r\n     toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n   }\r\n-},\r\n+    },\r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472504280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,14 @@\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n     deleteMessage: async (messageId) => {\r\n-  const { messages } = get();\r\n-  try {\r\n-    await axiosInstance.delete(`/messages/${messageId}`);\r\n-    set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n-  } catch (error) {\r\n-    toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n-  }\r\n-    },\r\n+    const { messages } = get();\r\n+    try {\r\n+        await axiosInstance.delete(`/messages/${messageId}`);\r\n+        set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n+    } catch (error) {\r\n+        toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n+    }\r\n+        },\r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472513357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,14 @@\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n     deleteMessage: async (messageId) => {\r\n-    const { messages } = get();\r\n-    try {\r\n-        await axiosInstance.delete(`/messages/${messageId}`);\r\n-        set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n-    } catch (error) {\r\n-        toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n-    }\r\n+        const { messages } = get();\r\n+        try {\r\n+            await axiosInstance.delete(`/messages/${messageId}`);\r\n+            set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n+        } catch (error) {\r\n+            toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n+        }\r\n         },\r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756472519833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,7 +54,7 @@\n             set({ messages: messages.filter((msg) => msg._id !== messageId) });\r\n         } catch (error) {\r\n             toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n         }\r\n-        },\r\n+    },\r\n \r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756490976097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n     //todo:later\r\n     setSelectedUser: (selectedUser) => {\r\n         set({ selectedUser});\r\n     },\r\n+\r\n     deleteMessage: async (messageId) => {\r\n         const { messages } = get();\r\n         try {\r\n             await axiosInstance.delete(`/messages/${messageId}`);\r\n@@ -56,5 +57,7 @@\n             toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n         }\r\n     },\r\n \r\n+    \r\n+\r\n }))\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756491313852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,7 +57,28 @@\n             toast.error(error.response?.data?.message || \"Failed to delete message\");\r\n         }\r\n     },\r\n \r\n-    \r\n+    editMessage: async (messageId, newText) => {\r\n+    const { messages } = get();\r\n+    try {\r\n+      const res = await axiosInstance.put(`/messages/${messageId}`, {\r\n+        text: newText,\r\n+      });\r\n \r\n+      // Update message in local store\r\n+      set({\r\n+        messages: messages.map((msg) =>\r\n+          msg._id === messageId\r\n+            ? { ...msg, text: newText, edited: true }\r\n+            : msg\r\n+        ),\r\n+      });\r\n+      toast.success(\"Message updated\");\r\n+      return res.data;\r\n+    } catch (error) {\r\n+      toast.error(error.response?.data?.message || \"Failed to edit message\");\r\n+      throw error;\r\n+    }\r\n+  },\r\n+\r\n }))\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1756021948345,

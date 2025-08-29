@@ -1,0 +1,54 @@
+{
+    "sourceFile": "backend/src/routes/message.route.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1756458894478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756458901119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar, } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,delet } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n"
+                },
+                {
+                    "date": 1756458906422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar,delet } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,deleteMessage } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n"
+                },
+                {
+                    "date": 1756458911732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar,deleteMessage } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,deleteMessage, edit } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n"
+                },
+                {
+                    "date": 1756458926349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar,deleteMessage, edit } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,deleteMessage, editMessage } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n router.post(\"/send/:id\",protectRoute,sendMessage);\r\n \r\n+\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756458935649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,8 @@\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n router.post(\"/send/:id\",protectRoute,sendMessage);\r\n+router.delete(\"/:id\", protectRoute, deleteMessage);\r\n+router.put(\"/:id\", protectRoute, editMessage);\r\n \r\n-\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756460565582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,6 @@\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n router.post(\"/send/:id\",protectRoute,sendMessage);\r\n router.delete(\"/:id\", protectRoute, deleteMessage);\r\n-router.put(\"/:id\", protectRoute, editMessage);\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756460579135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar,deleteMessage, editMessage } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,deleteMessage } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n"
+                },
+                {
+                    "date": 1756478251482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,7 @@\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n router.post(\"/send/:id\",protectRoute,sendMessage);\r\n router.delete(\"/:id\", protectRoute, deleteMessage);\r\n+router.put(\"/:id\", protectRoute, editMessage);\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756478258175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express, { Router } from \"express\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n-import {sendMessage, getMessages,getUsersForSidebar,deleteMessage } from \"../controllers/message.controller.js\";\r\n+import {sendMessage, getMessages,getUsersForSidebar,deleteMessage, } from \"../controllers/message.controller.js\";\r\n const router = express.Router();\r\n \r\n router.get(\"/users\",protectRoute,getUsersForSidebar);\r\n router.get(\"/:id\",protectRoute,getMessages);\r\n"
+                }
+            ],
+            "date": 1756458894478,
+            "name": "Commit-0",
+            "content": "import express, { Router } from \"express\";\r\nimport { protectRoute } from \"../middleware/auth.middleware.js\";\r\nimport {sendMessage, getMessages,getUsersForSidebar, } from \"../controllers/message.controller.js\";\r\nconst router = express.Router();\r\n\r\nrouter.get(\"/users\",protectRoute,getUsersForSidebar);\r\nrouter.get(\"/:id\",protectRoute,getMessages);\r\nrouter.post(\"/send/:id\",protectRoute,sendMessage);\r\n\r\nexport default router;"
+        }
+    ]
+}

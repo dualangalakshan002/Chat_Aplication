@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 81,
             "patches": [
                 {
                     "date": 1756021901576,
@@ -100,6 +100,238 @@
                 {
                     "date": 1756183092519,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n export const useAuthStore = create((set) => ({\r\n       authUser: null,\r\n       isSigningUp: false,\r\n-      isLoggingIng: false,\r\n+      isLoggingIn: false,\r\n       isUpdatingProfile: false,\r\n       isCheckingAuth: true,\r\n       onlineUsers: [],\r\n \r\n"
+                },
+                {
+                    "date": 1756284879556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,8 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n+      \r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756284893959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,18 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      \r\n+      deleteUser: async (userId) => {\r\n+   try {\r\n+     await axiosInstance.delete(`/users/${userId}`);\r\n+      set((state) => ({\r\n+        users: state.users.filter((user) => user._id !== userId),\r\n+      }));\r\n+   } catch (error) {\r\n+      console.error(error);\r\n+    }\r\n+ },\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756284899285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n       }));\r\n    } catch (error) {\r\n       console.error(error);\r\n     }\r\n- },\r\n+     },\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756284904964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,12 +76,12 @@\n      await axiosInstance.delete(`/users/${userId}`);\r\n       set((state) => ({\r\n         users: state.users.filter((user) => user._id !== userId),\r\n       }));\r\n-   } catch (error) {\r\n+      } catch (error) {\r\n       console.error(error);\r\n-    }\r\n-     },\r\n+      }\r\n+       },\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756284910013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,13 +71,13 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser: async (userId) => {\r\n-   try {\r\n+    try {\r\n      await axiosInstance.delete(`/users/${userId}`);\r\n       set((state) => ({\r\n         users: state.users.filter((user) => user._id !== userId),\r\n-      }));\r\n+        }));\r\n       } catch (error) {\r\n       console.error(error);\r\n       }\r\n        },\r\n"
+                },
+                {
+                    "date": 1756284917446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser: async (userId) => {\r\n-    try {\r\n+        try {\r\n      await axiosInstance.delete(`/users/${userId}`);\r\n       set((state) => ({\r\n         users: state.users.filter((user) => user._id !== userId),\r\n         }));\r\n"
+                },
+                {
+                    "date": 1756284923481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,10 +72,10 @@\n         }\r\n       },\r\n       deleteUser: async (userId) => {\r\n         try {\r\n-     await axiosInstance.delete(`/users/${userId}`);\r\n-      set((state) => ({\r\n+        await axiosInstance.delete(`/users/${userId}`);\r\n+        set((state) => ({\r\n         users: state.users.filter((user) => user._id !== userId),\r\n         }));\r\n       } catch (error) {\r\n       console.error(error);\r\n"
+                },
+                {
+                    "date": 1756284930076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,11 +72,11 @@\n         }\r\n       },\r\n       deleteUser: async (userId) => {\r\n         try {\r\n-        await axiosInstance.delete(`/users/${userId}`);\r\n-        set((state) => ({\r\n-        users: state.users.filter((user) => user._id !== userId),\r\n+          await axiosInstance.delete(`/users/${userId}`);\r\n+          set((state) => ({\r\n+          users: state.users.filter((user) => user._id !== userId),\r\n         }));\r\n       } catch (error) {\r\n       console.error(error);\r\n       }\r\n"
+                },
+                {
+                    "date": 1756286569250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,18 +70,8 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      deleteUser: async (userId) => {\r\n-        try {\r\n-          await axiosInstance.delete(`/users/${userId}`);\r\n-          set((state) => ({\r\n-          users: state.users.filter((user) => user._id !== userId),\r\n-        }));\r\n-      } catch (error) {\r\n-      console.error(error);\r\n-      }\r\n-       },\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756404316491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,21 +34,27 @@\n           set({ isSigningUp: false });\r\n         }\r\n       },\r\n \r\n-      login: async (data) => {\r\n-        set({ isLoggingIn: true }); // fixed typo here\r\n-        try {\r\n-          const res = await axiosInstance.post(\"/auth/login\", data);\r\n-          set({ authUser: res.data });\r\n-          toast.success(\"Logged in successfully\");\r\n-        } catch (error) {\r\n-          toast.error(error.response.data.message);\r\n-        } finally {\r\n-          set({ isLoggingIn: false });\r\n-        }\r\n-      },\r\n+login: async (data) => {\r\n+  set({ isLoggingIn: true }); \r\n+  try {\r\n+    const res = await axiosInstance.post(\"/auth/login\", data);\r\n \r\n+    // Store the JWT token in localStorage\r\n+    localStorage.setItem(\"token\", res.data.token);\r\n+\r\n+    // Save user data in the store\r\n+    set({ authUser: res.data.user || res.data }); // depending on backend response\r\n+    toast.success(\"Logged in successfully\");\r\n+  } catch (error) {\r\n+    toast.error(error.response?.data?.message || \"Login failed\");\r\n+  } finally {\r\n+    set({ isLoggingIn: false });\r\n+  }\r\n+},\r\n+\r\n+\r\n       logout: async () => {\r\n         try {\r\n           await axiosInstance.post(\"/auth/logout\");\r\n           set({ authUser: null });\r\n"
+                },
+                {
+                    "date": 1756404365534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,27 +34,21 @@\n           set({ isSigningUp: false });\r\n         }\r\n       },\r\n \r\n-login: async (data) => {\r\n-  set({ isLoggingIn: true }); \r\n-  try {\r\n-    const res = await axiosInstance.post(\"/auth/login\", data);\r\n+      login: async (data) => {\r\n+        set({ isLoggingIn: true }); // fixed typo here\r\n+        try {\r\n+          const res = await axiosInstance.post(\"/auth/login\", data);\r\n+          set({ authUser: res.data });\r\n+          toast.success(\"Logged in successfully\");\r\n+        } catch (error) {\r\n+          toast.error(error.response.data.message);\r\n+        } finally {\r\n+          set({ isLoggingIn: false });\r\n+        }\r\n+      },\r\n \r\n-    // Store the JWT token in localStorage\r\n-    localStorage.setItem(\"token\", res.data.token);\r\n-\r\n-    // Save user data in the store\r\n-    set({ authUser: res.data.user || res.data }); // depending on backend response\r\n-    toast.success(\"Logged in successfully\");\r\n-  } catch (error) {\r\n-    toast.error(error.response?.data?.message || \"Login failed\");\r\n-  } finally {\r\n-    set({ isLoggingIn: false });\r\n-  }\r\n-},\r\n-\r\n-\r\n       logout: async () => {\r\n         try {\r\n           await axiosInstance.post(\"/auth/logout\");\r\n           set({ authUser: null });\r\n"
+                },
+                {
+                    "date": 1756455344974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,8 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n+      \r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756455352972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      \r\n+      dele\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756455358423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      dele\r\n+      deleteUser:\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756455364386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      deleteUser:\r\n+      deleteUser:async\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756455370460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      deleteUser:async\r\n+      deleteUser:async(id)\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756455379931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,11 @@\n         } finally {\r\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n-      deleteUser:async(id)\r\n+      deleteUser:async(id)=>{\r\n+        \r\n+      }\r\n     }));\r\n \r\n \r\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756456217378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n-        \r\n+        try\r\n       }\r\n     }));\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756456223637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n-        try\r\n+        \r\n       }\r\n     }));\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756456229276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n-        \r\n+        tr\r\n       }\r\n     }));\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756456235788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n-        tr\r\n+        try\r\n       }\r\n     }));\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756456242220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,14 @@\n           set({ isUpdatingProfile: false });\r\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n-        try\r\n+        try {\r\n+          const\r\n+          \r\n+        } catch (error) {\r\n+          \r\n+        }\r\n       }\r\n     }));\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1756456248380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const\r\n+          const res=await\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456253505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await\r\n+          const res=await.a\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456270271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await.a\r\n+          const res=await axiosInstance\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456276869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance\r\n+          const res=await axiosInstance.de\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456282779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.de\r\n+          const res=await axiosInstance.delete(\"/\")\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456334360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.delete(\"/\")\r\n+          const res=await axiosInstance.delete()\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456339518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.delete()\r\n+          const res=await axiosInstance.delete(`/auth`)\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456347027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.delete(`/auth`)\r\n+          const res=await axiosInstance.delete(`/auth/${}`)\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456352830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.delete(`/auth/${}`)\r\n+          const res=await axiosInstance.delete(`/auth/${id}`)\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456359367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,10 +72,11 @@\n         }\r\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n-          const res=await axiosInstance.delete(`/auth/${id}`)\r\n+          const res=await axiosInstance.delete(`/auth/${id}`);\r\n           \r\n+          \r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456384848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,10 +73,10 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n+          return\r\n           \r\n-          \r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456392266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          return\r\n+          return res.data\r\n           \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456399952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,10 +73,10 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          return res.data\r\n-          \r\n+          return res.data;\r\n+          toast\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456418501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast\r\n+          toast.\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456431616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast.\r\n+          toast.success(\"Dele\")\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456436630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast.success(\"Dele\")\r\n+          toast.success(\"Delete is su\")\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456443810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast.success(\"Delete is su\")\r\n+          toast.success(\"Delete is Suced\")\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456454287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast.success(\"Delete is Suced\")\r\n+          toast.success(\"Delete is Suced\");\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456467806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,8 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           return res.data;\r\n-          toast.success(\"Delete is Suced\");\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456489173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,10 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          return res.data;\r\n+          \r\n+\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456494497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          \r\n+          set()\r\n \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456500038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          set()\r\n+          set({au})\r\n \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456505240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          set({au})\r\n+          set({authUser:res})\r\n \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456512336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          set({authUser:res})\r\n+          set({authUser:res.data});\r\n \r\n         } catch (error) {\r\n           \r\n         }\r\n"
+                },
+                {
+                    "date": 1756456518110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n-\r\n+          toast.\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456523596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n-          toast.\r\n+          toast.success{}\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456528878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n-          toast.success{}\r\n+          toast.success{\"Su\"}\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456539533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n-          toast.success{\"Su\"}\r\n+          toast.success{\"Success Delete Acc\"}\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456571112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n-          toast.success{\"Success Delete Acc\"}\r\n+          toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           \r\n         }\r\n       }\r\n"
+                },
+                {
+                    "date": 1756456605883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,10 @@\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n-          \r\n+              console.error(\"Delete failed:\", error.response?.data || error.message);\r\n+\r\n         }\r\n       }\r\n     }));\r\n \r\n"
+                },
+                {
+                    "date": 1756456612379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,10 +76,9 @@\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n           set({authUser:res.data});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n-              console.error(\"Delete failed:\", error.response?.data || error.message);\r\n-\r\n+          console.error(\"Delete failed:\", error.response?.data || error.message);\r\n         }\r\n       }\r\n     }));\r\n \r\n"
+                },
+                {
+                    "date": 1756456617812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,9 @@\n           set({authUser:res.data});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           console.error(\"Delete failed:\", error.response?.data || error.message);\r\n+          \r\n         }\r\n       }\r\n     }));\r\n \r\n"
+                },
+                {
+                    "date": 1756456643646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,10 @@\n           set({authUser:res.data});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           console.error(\"Delete failed:\", error.response?.data || error.message);\r\n-          \r\n+                    toast.error(error.response.data.message);\r\n+\r\n         }\r\n       }\r\n     }));\r\n \r\n"
+                },
+                {
+                    "date": 1756456650503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,10 +77,9 @@\n           set({authUser:res.data});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           console.error(\"Delete failed:\", error.response?.data || error.message);\r\n-                    toast.error(error.response.data.message);\r\n-\r\n+          toast.error(error.response.data.message);\r\n         }\r\n       }\r\n     }));\r\n \r\n"
+                },
+                {
+                    "date": 1756457082421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          set({authUser:res.data});\r\n+          set({authUser:});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           console.error(\"Delete failed:\", error.response?.data || error.message);\r\n           toast.error(error.response.data.message);\r\n"
+                },
+                {
+                    "date": 1756457087977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n       },\r\n       deleteUser:async(id)=>{\r\n         try {\r\n           const res=await axiosInstance.delete(`/auth/${id}`);\r\n-          set({authUser:});\r\n+          set({authUser:null});\r\n           toast.success(\"Success Delete Acc\");\r\n         } catch (error) {\r\n           console.error(\"Delete failed:\", error.response?.data || error.message);\r\n           toast.error(error.response.data.message);\r\n"
                 }
             ],
             "date": 1756021901576,
