@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1756207925640,
@@ -16,6 +16,18 @@
                 {
                     "date": 1756207960238,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n         }\r\n \r\n         const user = await User.findById(decoded.userId).select('-password');\r\n         if (!user) {\r\n-            return res.status(404).json({ message: 'User not found' });\r\n+            return res.status(401).json({ message: 'User not found' });\r\n         }\r\n         req.user = user; // Attach user to request object\r\n         next(); // Proceed to the next middleware or route handler\r\n     } catch (error) {\r\n"
+                },
+                {
+                    "date": 1756396787400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,5 +22,5 @@\n     } catch (error) {\r\n         console.log('Error in protectRoute middleware:', error.message);\r\n         res.status(401).json({ message: 'Internal server error' });\r\n     }\r\n-}\n\\ No newline at end of file\n+}\r\n"
+                },
+                {
+                    "date": 1756407338279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,4 +23,38 @@\n         console.log('Error in protectRoute middleware:', error.message);\r\n         res.status(401).json({ message: 'Internal server error' });\r\n     }\r\n }\r\n+const protect = async (req, res, next) => {\r\n+  let token;\r\n+\r\n+  if (\r\n+    req.headers.authorization &&\r\n+    req.headers.authorization.startsWith(\"Bearer\")\r\n+  ) {\r\n+    try {\r\n+      // Get token from header\r\n+      token = req.headers.authorization.split(\" \")[1];\r\n+\r\n+      // Verify token\r\n+      const decoded = jwt.verify(token, process.env.JWT_SECRET);\r\n+\r\n+      // Attach user to request (exclude password field)\r\n+      req.user = await User.findById(decoded.id).select(\"-password\");\r\n+\r\n+      if (!req.user) {\r\n+        return res.status(401).json({ message: \"User not found\" });\r\n+      }\r\n+\r\n+      next();\r\n+    } catch (error) {\r\n+      console.error(error);\r\n+      res.status(401).json({ message: \"Not authorized, token failed\" });\r\n+    }\r\n+  }\r\n+\r\n+  if (!token) {\r\n+    res.status(401).json({ message: \"Not authorized, no token\" });\r\n+  }\r\n+};\r\n+\r\n+export { protect };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756407351408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,38 +23,4 @@\n         console.log('Error in protectRoute middleware:', error.message);\r\n         res.status(401).json({ message: 'Internal server error' });\r\n     }\r\n }\r\n-const protect = async (req, res, next) => {\r\n-  let token;\r\n-\r\n-  if (\r\n-    req.headers.authorization &&\r\n-    req.headers.authorization.startsWith(\"Bearer\")\r\n-  ) {\r\n-    try {\r\n-      // Get token from header\r\n-      token = req.headers.authorization.split(\" \")[1];\r\n-\r\n-      // Verify token\r\n-      const decoded = jwt.verify(token, process.env.JWT_SECRET);\r\n-\r\n-      // Attach user to request (exclude password field)\r\n-      req.user = await User.findById(decoded.id).select(\"-password\");\r\n-\r\n-      if (!req.user) {\r\n-        return res.status(401).json({ message: \"User not found\" });\r\n-      }\r\n-\r\n-      next();\r\n-    } catch (error) {\r\n-      console.error(error);\r\n-      res.status(401).json({ message: \"Not authorized, token failed\" });\r\n-    }\r\n-  }\r\n-\r\n-  if (!token) {\r\n-    res.status(401).json({ message: \"Not authorized, no token\" });\r\n-  }\r\n-};\r\n-\r\n-export { protect };\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1756207925640,

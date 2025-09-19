@@ -3,11 +3,67 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1756208181076,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756285606231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,6 @@\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n \r\n+\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285613066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n+router.delete\r\n \r\n-\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285619733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete\r\n+router.delete(\"/\")\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285626277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete(\"/\")\r\n+router.delete(\"/:id\", dele)\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285633423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete(\"/:id\", dele)\r\n+router.delete(\"/:id\", deleteUser)\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285640550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete(\"/:id\", deleteUser)\r\n+router.delete(\"/:id\", deleteUser),\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285652090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from \"express\";\r\n-import { login, logout, signup,updateProfile,checkAuth } from \"../controllers/auth.controller.js\";\r\n+import { login, logout, signup,updateProfile,checkAuth, } from \"../controllers/auth.controller.js\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n \r\n \r\n const router = express.Router();\r\n@@ -10,7 +10,7 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete(\"/:id\", deleteUser),\r\n+router.delete(\"/:id\", deleteUser);\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756285657456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from \"express\";\r\n-import { login, logout, signup,updateProfile,checkAuth, } from \"../controllers/auth.controller.js\";\r\n+import { login, logout, signup,updateProfile,checkAuth,deleteUser } from \"../controllers/auth.controller.js\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n \r\n \r\n const router = express.Router();\r\n"
+                },
+                {
+                    "date": 1756286585246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import express from \"express\";\r\n-import { login, logout, signup,updateProfile,checkAuth,deleteUser } from \"../controllers/auth.controller.js\";\r\n+import { login, logout, signup,updateProfile,checkAuth } from \"../controllers/auth.controller.js\";\r\n import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n \r\n \r\n const router = express.Router();\r\n@@ -10,7 +10,6 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n-router.delete(\"/:id\", deleteUser);\r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756394500622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,6 @@\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n \r\n+\r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756394513479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,8 @@\n router.post(\"/logout\",logout );\r\n \r\n router.put(\"/update-profile\",protectRoute,updateProfile);\r\n router.get(\"/check\", protectRoute,checkAuth);\r\n+router.delete(\"/:id\", protect, deleteUser);\r\n \r\n \r\n export default router;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756394526882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\";\r\n import { login, logout, signup,updateProfile,checkAuth } from \"../controllers/auth.controller.js\";\r\n-import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n+import { protectRoute  } from \"../middleware/auth.middleware.js\";\r\n \r\n \r\n const router = express.Router();\r\n \r\n"
+                },
+                {
+                    "date": 1756394532894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\";\r\n import { login, logout, signup,updateProfile,checkAuth } from \"../controllers/auth.controller.js\";\r\n-import { protectRoute  } from \"../middleware/auth.middleware.js\";\r\n+import { protectRoute, protect } from \"../middleware/auth.middleware.js\";\r\n \r\n \r\n const router = express.Router();\r\n \r\n"
+                },
+                {
+                    "date": 1756394953341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import express from \"express\";\r\n import { login, logout, signup,updateProfile,checkAuth } from \"../controllers/auth.controller.js\";\r\n import { protectRoute, protect } from \"../middleware/auth.middleware.js\";\r\n+i\r\n \r\n \r\n-\r\n const router = express.Router();\r\n \r\n router.post(\"/signup\", signup);\r\n router.post(\"/login\", login);\r\n"
                 }
             ],
             "date": 1756208181076,

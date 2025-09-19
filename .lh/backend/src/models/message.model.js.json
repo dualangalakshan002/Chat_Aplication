@@ -1,0 +1,82 @@
+{
+    "sourceFile": "backend/src/models/message.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 16,
+            "patches": [
+                {
+                    "date": 1756458755494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756458762579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     },\r\n     image:{\r\n         type:String,\r\n     },\r\n-    \r\n+    content\r\n },\r\n {timestamps:true}\r\n );\r\n const Message = mongoose.model(\"Message\", messageSchema);\r\n"
+                },
+                {
+                    "date": 1756458768530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,11 @@\n     },\r\n     image:{\r\n         type:String,\r\n     },\r\n-    content\r\n+    content:{\r\n+        \r\n+    }\r\n },\r\n {timestamps:true}\r\n );\r\n const Message = mongoose.model(\"Message\", messageSchema);\r\n"
+                },
+                {
+                    "date": 1756458773588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     image:{\r\n         type:String,\r\n     },\r\n     content:{\r\n-        \r\n+        type\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458780248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     image:{\r\n         type:String,\r\n     },\r\n     content:{\r\n-        type\r\n+        type:String\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458787702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n     image:{\r\n         type:String,\r\n     },\r\n     content:{\r\n-        type:String\r\n+        type:String,\r\n+        te\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458792951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         type:String,\r\n     },\r\n     content:{\r\n         type:String,\r\n-        te\r\n+        t\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458800317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         type:String,\r\n     },\r\n     content:{\r\n         type:String,\r\n-        t\r\n+        require:\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458806960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,10 @@\n         type:String,\r\n     },\r\n     content:{\r\n         type:String,\r\n-        require:\r\n+        require:true,\r\n+        \r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458812675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n     },\r\n     content:{\r\n         type:String,\r\n         require:true,\r\n-        \r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458818008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     },\r\n     content:{\r\n         type:String,\r\n         require:true,\r\n-    }\r\n+    },\r\n },\r\n {timestamps:true}\r\n );\r\n const Message = mongoose.model(\"Message\", messageSchema);\r\n"
+                },
+                {
+                    "date": 1756458824658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     content:{\r\n         type:String,\r\n         require:true,\r\n     },\r\n+    edited\r\n },\r\n {timestamps:true}\r\n );\r\n const Message = mongoose.model(\"Message\", messageSchema);\r\n"
+                },
+                {
+                    "date": 1756458830805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n     content:{\r\n         type:String,\r\n         require:true,\r\n     },\r\n-    edited\r\n+    edited:{\r\n+        ty\r\n+    }\r\n },\r\n {timestamps:true}\r\n );\r\n const Message = mongoose.model(\"Message\", messageSchema);\r\n"
+                },
+                {
+                    "date": 1756458836793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         type:String,\r\n         require:true,\r\n     },\r\n     edited:{\r\n-        ty\r\n+        type:\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458843467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n         type:String,\r\n         require:true,\r\n     },\r\n     edited:{\r\n-        type:\r\n+        type:Boolean,\r\n+        \r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458849470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         require:true,\r\n     },\r\n     edited:{\r\n         type:Boolean,\r\n-        \r\n+        required\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                },
+                {
+                    "date": 1756458857338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         require:true,\r\n     },\r\n     edited:{\r\n         type:Boolean,\r\n-        required\r\n+        default\r\n     }\r\n },\r\n {timestamps:true}\r\n );\r\n"
+                }
+            ],
+            "date": 1756458755494,
+            "name": "Commit-0",
+            "content": "import mongoose from 'mongoose';\r\nconst messageSchema = new mongoose.Schema({\r\n    senderId: {\r\n        type: mongoose.Schema.Types.ObjectId,\r\n        ref: \"User\",\r\n        required: true,\r\n    },\r\n    receiverId:{\r\n        type: mongoose.Schema.Types.ObjectId,\r\n        ref: \"User\",\r\n        required: true,\r\n    },\r\n    text:{\r\n        type:String,\r\n    },\r\n    image:{\r\n        type:String,\r\n    },\r\n    \r\n},\r\n{timestamps:true}\r\n);\r\nconst Message = mongoose.model(\"Message\", messageSchema);\r\nexport default Message;"
+        }
+    ]
+}

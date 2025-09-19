@@ -1,0 +1,46 @@
+{
+    "sourceFile": "backend/src/controllers/message.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1756459001837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756459054248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n \r\n     if (!msg) return res.status(404).json({ message: \"Message not found\" });\r\n \r\n     // ✅ only the sender can delete\r\n-    if (msg.sender.toString() !== req.user._id.toString()) {\r\n+    if (msg.senderId.toString() !== req.user._id.toString()) {\r\n       return res.status(403).json({ message: \"Not authorized\" });\r\n     }\r\n \r\n     await msg.deleteOne();\r\n"
+                },
+                {
+                    "date": 1756459069519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n \r\n     if (!msg) return res.status(404).json({ message: \"Message not found\" });\r\n \r\n     // ✅ only the sender can edit\r\n-    if (msg.sender.toString() !== req.user._id.toString()) {\r\n+    if (msg.senderId.toString() !== req.user._id.toString()) {\r\n       return res.status(403).json({ message: \"Not authorized\" });\r\n     }\r\n \r\n     msg.content = content;\r\n"
+                },
+                {
+                    "date": 1756460519915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,25 +81,4 @@\n     res.status(500).json({ message: \"Error deleting message\", error: error.message });\r\n   }\r\n };\r\n \r\n-export const editMessage = async (req, res) => {\r\n-  try {\r\n-    const { content } = req.body;\r\n-    const msg = await Message.findById(req.params.id);\r\n-\r\n-    if (!msg) return res.status(404).json({ message: \"Message not found\" });\r\n-\r\n-    // ✅ only the sender can edit\r\n-    if (msg.senderId.toString() !== req.user._id.toString()) {\r\n-      return res.status(403).json({ message: \"Not authorized\" });\r\n-    }\r\n-\r\n-    msg.content = content;\r\n-    msg.edited = true;\r\n-    await msg.save();\r\n-\r\n-    res.json({ message: \"Message updated\", msg });\r\n-  } catch (error) {\r\n-    res.status(500).json({ message: \"Error editing message\", error: error.message });\r\n-  }\r\n-};\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756478328894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,4 +81,27 @@\n     res.status(500).json({ message: \"Error deleting message\", error: error.message });\r\n   }\r\n };\r\n \r\n+export const editMessage = async (req, res) => {\r\n+  try {\r\n+    const { content } = req.body;\r\n+    const msg = await Message.findById(req.params.id);\r\n+\r\n+    if (!msg) {\r\n+      return res.status(404).json({ message: \"Message not found\" });\r\n+    }\r\n+\r\n+    // ✅ Only sender can edit\r\n+    if (msg.sender.toString() !== req.user._id.toString()) {\r\n+      return res.status(403).json({ message: \"Not authorized to edit this message\" });\r\n+    }\r\n+\r\n+    msg.content = content;\r\n+    msg.edited = true;\r\n+    await msg.save();\r\n+\r\n+    res.json({ message: \"Message updated\", msg });\r\n+  } catch (error) {\r\n+    res.status(500).json({ message: \"Error editing message\", error: error.message });\r\n+  }\r\n+};\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1756478336742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n       return res.status(404).json({ message: \"Message not found\" });\r\n     }\r\n \r\n     // ✅ Only sender can edit\r\n-    if (msg.sender.toString() !== req.user._id.toString()) {\r\n+    if (msg.senderId.toString() !== req.user._id.toString()) {\r\n       return res.status(403).json({ message: \"Not authorized to edit this message\" });\r\n     }\r\n \r\n     msg.content = content;\r\n"
+                },
+                {
+                    "date": 1756490496066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n     if (msg.senderId.toString() !== req.user._id.toString()) {\r\n       return res.status(403).json({ message: \"Not authorized to edit this message\" });\r\n     }\r\n \r\n-    msg.content = content;\r\n+    msg. = content;\r\n     msg.edited = true;\r\n     await msg.save();\r\n \r\n     res.json({ message: \"Message updated\", msg });\r\n"
+                },
+                {
+                    "date": 1756490505495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n     if (msg.senderId.toString() !== req.user._id.toString()) {\r\n       return res.status(403).json({ message: \"Not authorized to edit this message\" });\r\n     }\r\n \r\n-    msg.text = ;\r\n+    msg.text = t;\r\n     msg.edited = true;\r\n     await msg.save();\r\n \r\n     res.json({ message: \"Message updated\", msg });\r\n"
+                }
+            ],
+            "date": 1756459001837,
+            "name": "Commit-0",
+            "content": "import cloudinary from \"../lib/cloudinary.js\";\r\nimport Message from \"../models/message.model.js\";\r\nimport User from \"../models/user.model.js\";\r\n\r\nexport const getUsersForSidebar = async (req, res) => {\r\n    try{\r\n        const loggedInUserId = req.user._id;\r\n        const filteredUsers =await User.find({_id: {$ne: loggedInUserId} }).select(\"-password\");\r\n\r\n        res.status(200).json(filteredUsers);\r\n    }catch(error){\r\n\r\n        console.error(\"Error in getUsersForSidebar:\", error.message);\r\n        res.status(500).json({ error: \"Internal server error\" });\r\n    }\r\n};\r\n\r\nexport const getMessages = async (req, res) => {\r\n    try {\r\n        const {id:userToChatId}= req.params;\r\n        const myId=req.user._id;\r\n\r\n        const message = await Message.find({\r\n            $or:[\r\n               {senderId:myId,receiverId:userToChatId},\r\n               {senderId:userToChatId, receiverId:myId} \r\n            ]\r\n        })\r\n        res.status(200).json(message);\r\n    } catch (error) {\r\n        console.error(\"Error in getMessages:\", error.message);\r\n        res.status(500).json({ error: \"Internal server error\" });\r\n        \r\n    }\r\n};\r\n\r\nexport const sendMessage = async (req,res) => {\r\n    try {\r\n        const{text,image}=req.body;\r\n        const {id:receiverId} = req.params;\r\n        const senderId = req.user._id;\r\n\r\n        //Upload image to cloudinary if it exists\r\n        let imageUrl;\r\n        if(image){\r\n            const uploadResponse = await cloudinary.uploader.upload(image);\r\n            imageUrl = uploadResponse.secure_url;\r\n        }\r\n        const newMessage = new Message({\r\n            senderId,\r\n            receiverId,\r\n            text,\r\n            image: imageUrl,\r\n        });\r\n\r\n        await newMessage.save();\r\n\r\n        //todo:realtime functionality goes here=>socket.io\r\n        res.status(201).json(newMessage);\r\n    } catch (error) {\r\n        console.error(\"Error in sendMessage:\", error.message);\r\n        res.status(500).json({ error: \"Internal server error\" });\r\n        \r\n    }\r\n};\r\n\r\nexport const deleteMessage = async (req, res) => {\r\n  try {\r\n    const msg = await Message.findById(req.params.id);\r\n\r\n    if (!msg) return res.status(404).json({ message: \"Message not found\" });\r\n\r\n    // ✅ only the sender can delete\r\n    if (msg.sender.toString() !== req.user._id.toString()) {\r\n      return res.status(403).json({ message: \"Not authorized\" });\r\n    }\r\n\r\n    await msg.deleteOne();\r\n    res.json({ message: \"Message deleted\" });\r\n  } catch (error) {\r\n    res.status(500).json({ message: \"Error deleting message\", error: error.message });\r\n  }\r\n};\r\n\r\nexport const editMessage = async (req, res) => {\r\n  try {\r\n    const { content } = req.body;\r\n    const msg = await Message.findById(req.params.id);\r\n\r\n    if (!msg) return res.status(404).json({ message: \"Message not found\" });\r\n\r\n    // ✅ only the sender can edit\r\n    if (msg.sender.toString() !== req.user._id.toString()) {\r\n      return res.status(403).json({ message: \"Not authorized\" });\r\n    }\r\n\r\n    msg.content = content;\r\n    msg.edited = true;\r\n    await msg.save();\r\n\r\n    res.json({ message: \"Message updated\", msg });\r\n  } catch (error) {\r\n    res.status(500).json({ message: \"Error editing message\", error: error.message });\r\n  }\r\n};"
+        }
+    ]
+}

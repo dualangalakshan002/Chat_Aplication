@@ -1,0 +1,30 @@
+{
+    "sourceFile": "backend/src/routes/user.route.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1756405760999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756406450940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n import { protect } from \"../middleware/auth.middleware.js\";\r\n \r\n const router = express.Router();\r\n \r\n-// DELETE /api/users/:id\r\n+// DELETE USER (protected)\r\n router.delete(\"/:id\", protect, deleteUser);\r\n \r\n export default router;\r\n"
+                },
+                {
+                    "date": 1756407366543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import express from \"express\";\r\n import { deleteUser } from \"../controllers/auth.controller.js\";\r\n-import { protect } from \"../middleware/auth.middleware.js\";\r\n+import { protectR } from \"../middleware/auth.middleware.js\";\r\n \r\n const router = express.Router();\r\n \r\n // DELETE USER (protected)\r\n"
+                },
+                {
+                    "date": 1756407372333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import express from \"express\";\r\n import { deleteUser } from \"../controllers/auth.controller.js\";\r\n-import { protectR } from \"../middleware/auth.middleware.js\";\r\n+import { protectRoute } from \"../middleware/auth.middleware.js\";\r\n \r\n const router = express.Router();\r\n \r\n // DELETE USER (protected)\r\n-router.delete(\"/:id\", protect, deleteUser);\r\n+router.delete(\"/:id\", protectR, deleteUser);\r\n \r\n export default router;\r\n"
+                }
+            ],
+            "date": 1756405760999,
+            "name": "Commit-0",
+            "content": "import express from \"express\";\r\nimport { deleteUser } from \"../controllers/auth.controller.js\";\r\nimport { protect } from \"../middleware/auth.middleware.js\";\r\n\r\nconst router = express.Router();\r\n\r\n// DELETE /api/users/:id\r\nrouter.delete(\"/:id\", protect, deleteUser);\r\n\r\nexport default router;\r\n"
+        }
+    ]
+}
