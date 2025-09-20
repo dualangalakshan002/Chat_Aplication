@@ -21,6 +21,8 @@ const ChatContainer = () => {
     selectedUser,
     deleteMessage,
     editMessage, // optional
+    subscribeToMessages,
+    unsubscribeFromMessages, // optional
   } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
@@ -30,11 +32,13 @@ const ChatContainer = () => {
     if (selectedUser?._id) {
       getMessages(selectedUser._id);
     }
-  }, [selectedUser, getMessages]);
+    subscribeToMessages();
+    return ()=>unsubscribeFromMessages(); // optional cleanup
+  }, [selectedUser, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (messageEndRef.current) {
+    if (messageEndRef.current &&messages) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
@@ -57,6 +61,7 @@ const ChatContainer = () => {
           <div
             key={message._id}
             className={`chat ${message.senderId === authUser?._id ? "chat-end" : "chat-start"}`}
+            ref ={messageEndRef}
           >
             {/* Profile picture */}
             <div className="chat-image avatar">
