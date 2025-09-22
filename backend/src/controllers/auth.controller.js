@@ -109,11 +109,11 @@ export const checkAuth = (req, res) => {
         
     }
 };
+
 export const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
 
-    // Only allow user to delete their own account OR admin
     if (req.user._id.toString() !== userId) {
       return res.status(403).json({ message: "Not authorized to delete this user" });
     }
