@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
   password: {
     type: String,
     required: true,
-    minlength: 6, // Minimum length for password
+    minlength: 6, 
   },
   profilePic: {
       type: String,
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
 
 },
 {
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true, 
 }
 );
 const User = mongoose.model("User",userSchema);
