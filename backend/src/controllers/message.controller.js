@@ -90,7 +90,7 @@ export const deleteMessage = async (req, res) => {
 
 export const editMessage = async (req, res) => {
   try {
-    const { text: newText } = req.body;  // 👈 rename to avoid conflict
+    const { text: newText } = req.body;
     const msg = await Message.findById(req.params.id);
 
     if (!msg) {
@@ -105,6 +105,16 @@ export const editMessage = async (req, res) => {
     msg.text = newText;
     msg.edited = true;
     await msg.save();
+
+    // Real-time update via socket.io
+    const senderSocketId = getReceiverSocketId(msg.senderId.toString());
+    const receiverSocketId = getReceiverSocketId(msg.receiverId.toString());
+    if (senderSocketId) {
+      io.to(senderSocketId).emit("editMessage", msg);
+    }
+    if (receiverSocketId && receiverSocketId !== senderSocketId) {
+      io.to(receiverSocketId).emit("editMessage", msg);
+    }
 
     res.json({ message: "Message updated", msg });
   } catch (error) {
